@@ -5,7 +5,7 @@ import Qt5Compat.GraphicalEffects
 
 Row {
 
-  spacing: 15;
+  spacing: 8;
 
   SystemClock {
     id: clock
@@ -34,7 +34,7 @@ Row {
     }
 
     Text {
-      text: Qt.formatDateTime(clock.date, "d·M·yyyy")
+      text: Qt.formatDateTime(clock.date, "yyyy·MM·dd")
 
       color: Theme.dim
       font.pixelSize: 14
