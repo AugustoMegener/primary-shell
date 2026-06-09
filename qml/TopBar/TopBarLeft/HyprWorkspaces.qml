@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import Quickshell.Hyprland
 import QtQuick
 import Qt5Compat.GraphicalEffects
@@ -7,6 +9,7 @@ Repeater {
   model: Hyprland.workspaces
 
   anchors.verticalCenter: parent.verticalCenter
+  
 
   Item { 
     id: workspace
@@ -28,9 +31,9 @@ Repeater {
       anchors.fill: parent
       radius: 8
       border.width: 1
-      border.color: isFocused ? Theme.altColor(index) : Theme.transparent
+      border.color: workspace.isFocused ? Theme.altColor(workspace.index) : Theme.transparent
 
-      color: isFocused ? "#312b24" : Theme.background
+      color: workspace.isFocused ? "#312b24" : Theme.background
 
       layer.enabled: true
       layer.effect: ShaderEffect {
@@ -40,12 +43,12 @@ Repeater {
         property real offsetX: 1.0
         property real offsetY: 1.0
 
-        fragmentShader: isFocused ? "../../" + Theme.innershadowShader : ""
+        fragmentShader: workspace.isFocused ? "../../" + Theme.innershadowShader : ""
       }
 
       Image {
         id: icon
-        source: "../../" + Theme.altIcon(index);
+        source: "../../" + Theme.altIcon(workspace.index);
         width: 11;
         height: 11;
 
@@ -55,7 +58,7 @@ Repeater {
       ColorOverlay { 
         anchors.fill: icon
         source: icon
-        color: isFocused? Theme.altColor(index) : Theme.dim
+        color: workspace.isFocused? Theme.altColor(workspace.index) : Theme.dim
       }
 
       MouseArea {

@@ -1,12 +1,16 @@
 import QtQuick
+import "../../SideBar/SideBarToggle"
 
 Row {
-  id: datetime
+    id: datetime
+    spacing: 8
 
-  anchors.right: parent.right
-  anchors.verticalCenter: parent.verticalCenter
-  anchors.rightMargin: 10
-  spacing: 4
+    DateTime {
+        anchors.verticalCenter: parent.verticalCenter
+    }
 
-  DateTime { }
+    SideBarToggle { 
+        side: "right"
+        anchors.verticalCenter: parent.verticalCenter
+    }
 }

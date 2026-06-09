@@ -1,2 +1,2 @@
 #!/bin/sh
-exec /nix/store/lwa1k7ni8d4ljj44mzzlagk4qnngrsr8-qtdeclarative-6.11.0/bin/qmlls -E "$@"
+exec /nix/store/0x7jcnb8rls5v0jrl17ji5zj3w99wbp2-qtdeclarative-6.11.0/bin/qmlls -E "$@"

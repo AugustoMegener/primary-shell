@@ -6,6 +6,7 @@ QtObject {
     readonly property string innershadowShader: "assets/shaders/innershadow.frag.qsb"
     readonly property color accent: "#da9a22"
     readonly property color background: "#2b2622"
+    readonly property color foreground: "#302b24"
     readonly property color dim: "#866f51"
     readonly property int fontSize: 14
 

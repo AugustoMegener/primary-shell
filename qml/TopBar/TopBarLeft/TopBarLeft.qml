@@ -1,12 +1,17 @@
 import QtQuick
+import "../../SideBar/SideBarToggle"
+
+import "../../Theme"
 
 Row {
   id: workspaces
+  spacing: 33
 
-  anchors.left: parent.left
-  anchors.verticalCenter: parent.verticalCenter
-  anchors.leftMargin: 10
-  spacing: 4
-
-  HyprWorkspaces { }
+  SideBarToggle { 
+    side: "left"
+  }
+  Row {
+    spacing: 4
+    HyprWorkspaces { }
+  }
 }

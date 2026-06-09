@@ -7,6 +7,8 @@ Row {
 
   spacing: 8;
 
+   
+
   SystemClock {
     id: clock
     precision: SystemClock.Minutes
