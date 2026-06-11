@@ -15,6 +15,7 @@ PanelWindow {
     implicitHeight: 50
     color: "transparent"
 
+
     Rectangle {
         width: parent.width 
         height: parent.height
@@ -25,6 +26,8 @@ PanelWindow {
             y: 10
             width: parent.width - 20
             height: parent.height - 10
+
+            
 
             TopBarLeft {
                 anchors.left: parent.left
