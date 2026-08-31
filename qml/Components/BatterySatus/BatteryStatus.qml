@@ -3,6 +3,7 @@ import Quickshell
 import "../../Theme"
 import Qt5Compat.GraphicalEffects
 import Quickshell.Services.UPower
+import QtQuick.VectorImage
 
 Row {
   visible: UPower.displayDevice.state === UPowerDeviceState.Charging
@@ -30,13 +31,13 @@ Row {
       color: battery.batteryLow ? Theme.activeAltColor : Theme.mixColors(Theme.mainButtonColor, Theme.activeAltColor, 0.33)
     }
 
-    Image {
+    VectorImage {
       id: battery_icon_mask
-      source: (battery.batteryLow <= 0.2 ? "../../assets/icons/battery-warning" : (UPower.displayDevice.state == UPowerDeviceState.Charging ? "../../assets/icons/battery-charging" : "")) + "-mask.svg"
+      source: (battery.batteryLow ? "../../assets/icons/battery-warning-mask.svg" : (UPower.displayDevice.state == UPowerDeviceState.Charging ? "../../assets/icons/battery-charging-mask.svg" : ""))
       anchors.fill: parent
-      sourceSize.width: width
-      sourceSize.height: height
       visible: false
+
+      preferredRendererType: VectorImage.CurveRenderer
     }
     ColorOverlay {
       anchors.fill: battery_icon_mask
@@ -44,12 +45,11 @@ Row {
       color: Theme.background
     }
 
-    Image {
+    VectorImage {
       id: battery_icon
       source: "../../assets/icons/battery" + (battery.batteryLow ? "-warning" : (UPower.displayDevice.state == UPowerDeviceState.Charging ? "-charging" : "")) + ".svg"
       anchors.fill: parent
-      sourceSize.width: width
-      sourceSize.height: height
+      preferredRendererType: VectorImage.CurveRenderer
       visible: false
     }
     ColorOverlay {

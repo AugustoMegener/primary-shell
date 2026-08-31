@@ -5,6 +5,8 @@ import "../../SideBar"
 import "../../Components/NetworkStatus/"
 import "../../Components/CapslockStatus/"
 import "../../Components/BatterySatus/"
+import "../../Components/AudioStatus/"
+import "../../Components/AudioStatus/AudioState/"
 import "../../Components/TrayList/"
 
 Row {
@@ -35,6 +37,14 @@ Row {
     BatteryStatus {
       anchors.verticalCenter: parent.verticalCenter
     }
+
+    AudioStatus {
+
+      visible: AudioState.playing || AudioState.muted
+
+      anchors.verticalCenter: parent.verticalCenter
+    }
+
     DateTime {
         anchors.verticalCenter: parent.verticalCenter
     }

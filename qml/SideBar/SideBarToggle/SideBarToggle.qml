@@ -1,11 +1,14 @@
 import QtQuick
 import "../../Theme"
 import ".."
+import "../../ShellState"
 
 Item {
   id: sideBarToggle
   required property string side
   property bool toggle: side == "left" ? SideBarState.leftOpen : SideBarState.rightOpen
+
+  visible: ShellState.sidebarsEnabled
 
   width: 33
   height: 33

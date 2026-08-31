@@ -21,14 +21,14 @@ PanelWindow {
         radius: 16
         width: 50
         height: 50
-        layer.enabled: true
+        /*layer.enabled: true
         layer.effect: DropShadow {
             horizontalOffset: 0
             verticalOffset: 4
             radius: 16
             samples: 33
             color: "#80000000"
-        }
+          }*/
 
         state: DynamicIslandState.state
 

@@ -42,8 +42,10 @@ Singleton {
   readonly property string innershadowShader: "assets/shaders/innershadow.frag.qsb"
   readonly property color accent: colorYellow
   readonly property color background: "#26211c"
+  readonly property color  darkBackgound: "#1b1714"
   readonly property color foreground: "#2e261f"
   readonly property color lightForeground: "#342c23"
+  readonly property color darkForeground: "#2b251e"
   readonly property color border: "#3b3026"
   readonly property color dim: "#866f50"
   readonly property color text: "#d7c0a3"  
@@ -61,6 +63,11 @@ Singleton {
     return colors[(i - 1) % 3]
   }
 
+
+  property var altColorNoPurple: function(i) {
+    const colors = [colorYellow, colorRed, colorBlue]
+    return colors[(i) % 3]
+  }
 
   property var altLightColor: function(i) {
     const colors = [colorLightYellow, colorLightRed, colorLightBlue]

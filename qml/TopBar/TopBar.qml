@@ -6,11 +6,11 @@ import "./TopBarLeft"
 import "./TopBarRight"
 import "../SideBar"
 import "../Components/TrayList"
+import "../ShellState"
 
 PanelWindow { 
   id: topbar
-  aboveWindows: false
-  WlrLayershell.layer: WlrLayershell.Layer.Bottom
+  aboveWindows: ShellState.aboveWindows
   WlrLayershell.namespace: "topbar"
   anchors { top: true; left: true; right: true }
 
@@ -51,11 +51,13 @@ PanelWindow {
       TopBarLeft {
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
+        leftPadding: SideBarState.leftOpen? 15 : 0    
       }
 
       TopBarRight {
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
+        rightPadding: SideBarState.rightOpen? 15 : 0    
       }
     }
   }

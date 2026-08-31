@@ -7,6 +7,7 @@ import "./Border"
 import "./SideBar"
 import "./KeyboardRgb"
 import "./SideBar/SideBarLeft"
+import "./SideBar/SideBarRight"
 import "./SideBar/SideBarToggle"
 import "./Components/PowerMenu/"
 import "./DynamicIsland/"
@@ -16,37 +17,11 @@ ShellRoot {
 
 
   PowerMenuShortcut {} 
-  PowerMenu {} 
-
-  SideBar { 
-    id: sidebar
-    side: "right" 
-
-    Item {
-      anchors.right: parent.right
-      anchors.top: parent.top
-
-      anchors.topMargin: 15
-      anchors.bottomMargin: 10
-      implicitWidth: 50
-      implicitHeight: 30
-      SideBarToggle {
-        anchors.centerIn: parent
-        side: "right"
-        visible: SideBarState.rightOpen
-      }
-    }
-    Column {
-      width: parent.width
-      anchors.top: parent.top
-      anchors.left: parent.left
-      anchors.right: parent.right
 
 
-    }
+  SideBarRight {
 
   }
-
   SideBarLeft {
 
   }
@@ -63,6 +38,8 @@ ShellRoot {
   KeyboardRgb {}
 
   TopBar {}
+
+  PowerMenu {} 
 
   DynamicIsland {  
     anchors { top: true } 

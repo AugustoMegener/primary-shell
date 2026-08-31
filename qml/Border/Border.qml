@@ -4,6 +4,7 @@ import QtQuick
 import Quickshell.Hyprland
 import "./../Misc/CRTFilter"
 import "../Theme"
+import "../ShellState"
 
 Scope {
   required property ShellScreen screen
@@ -22,15 +23,19 @@ Scope {
   PanelWindow {
     id: borderWindow
 
-    property bool hasTiledWindow: {
-      const ws = Hyprland.focusedMonitor?.activeWorkspace
-      if (!ws) return false
-      return ws.toplevels.values.some(w => !w.floating && !w.fullscreen)
+    Connections {
+      target: Hyprland
+      function onRawEvent(event) {
+        if (event.name === "openwindow" || event.name === "closewindow"
+        || event.name === "changefloatingmode" || event.name === "movewindow") {
+          Hyprland.refreshToplevels()
+        }
+      }
     }
 
+
     WlrLayershell.namespace: "border"
-    aboveWindows: false
-    WlrLayershell.layer: WlrLayershell.Layer.Bottom
+    aboveWindows: ShellState.aboveWindows
     WlrLayershell.exclusionMode: ExclusionMode.Normal
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
     screen: parent.screen
@@ -40,20 +45,28 @@ Scope {
 
     mask: Region {}
     Component.onCompleted: {
+      Hyprland.refreshToplevels()
       Quickshell.execDetached(["hyprctl", "eval", "hl.layer_rule({ name = 'noanim_border', match = { namespace = 'border' }, no_anim = true })"])
     }
     ShaderEffect {
       anchors.fill: parent
       enabled: false
       fragmentShader: Qt.resolvedUrl("../assets/shaders/border.frag.qsb")
-      property real thickness: borderWindow.hasTiledWindow? 9999 : 10.5
+      property real thickness: ShellState.borderClosure >= 0 ? (borderWindow.width / 2) * ShellState.borderClosure : 10.5
+
+      Behavior on thickness {
+        NumberAnimation {
+          duration: 250
+          easing.type: Easing.InOutCubic
+        }
+      }
       property real innerRadius: 12
       property real w: width
       property real h: height
       property color borderColor: Theme.background
       property real innerThickness: 1
       property color innerColor: borderWindow.hasTiledWindow? "#2b2622" : "#3d332a"
-      property real shadowSize: 25
+      property real shadowSize: 18
       property color shadowColor: "#BF1f1910"
     }
 

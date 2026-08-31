@@ -4,13 +4,14 @@ import QtQuick
 
 import "../Theme"
 import "../SideBar"
+import "../ShellState"
 
 PanelWindow {
   id: sidebar
   required property string side
   WlrLayershell.namespace: "sidebar-" + side
-  WlrLayershell.layer: WlrLayershell.Layer.Bottom
-  aboveWindows: false
+  WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
+  aboveWindows: ShellState.aboveWindows
   color: "transparent"
   anchors {
       top: true
