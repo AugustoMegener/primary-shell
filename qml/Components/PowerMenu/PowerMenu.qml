@@ -10,7 +10,7 @@ import "./PowerMenuOption"
 PanelWindow {
   id: modal
 
-  color: "white"
+  color: "transparent"
   visible: PowerMenuState.isPowerMenuOpen || card.opacity > 0
 
   anchors {
@@ -20,7 +20,6 @@ PanelWindow {
     right: true
   }
 
-  WlrLayershell.exclusionMode: ExclusionMode.Ignore
 
   Item {
     anchors.fill: parent
